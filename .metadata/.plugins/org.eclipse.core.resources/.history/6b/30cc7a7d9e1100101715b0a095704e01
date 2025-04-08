@@ -1,0 +1,14 @@
+package com.coderhouse.perro;
+
+public class Perro {
+	public String nombre;
+	public String raza;
+	public String color;
+	public String tamanio;
+	public int edad;
+	public double peso;
+	
+	public void ladrar() {
+		System.out.println("Guau");
+	};
+}
