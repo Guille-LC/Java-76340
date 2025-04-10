@@ -10,6 +10,12 @@
 		<item value="file://C:\Users\Guille\git\Java-76940"/>
 		<item value="https://github.com/Guille-LC/Java-76940.git"/>
 	</list>
+	<list key="CommitDialog.authorValues">
+		<item value="GU1LL3_L4-C0 &lt;guillermo96lc@hotmail.com&gt;"/>
+	</list>
+	<list key="CommitDialog.committerValues">
+		<item value="GU1LL3_L4-C0 &lt;guillermo96lc@hotmail.com&gt;"/>
+	</list>
 	<section name="org.eclipse.egit.ui.internal.staging.StagingView">
 		<item key="MAIN_SASH_FORM_ORIENTATION_VERTICAL" value="false"/>
 		<item key="HORIZONTAL_SASH_FORM_WEIGHT" value="500,500"/>
@@ -27,5 +33,16 @@
 		<item key="DIALOG_WIDTH" value="616"/>
 		<item key="DIALOG_HEIGHT" value="458"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.push.PushResultDialog.dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="358"/>
+		<item key="DIALOG_Y_ORIGIN" value="67"/>
+		<item key="DIALOG_WIDTH" value="666"/>
+		<item key="DIALOG_HEIGHT" value="458"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<list key="sashWeights">
+			<item value="600"/>
+			<item value="400"/>
+		</list>
 	</section>
 </section>
