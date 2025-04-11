@@ -36,9 +36,8 @@ public class Cliente {
 		super();
 	}
 
-	public Cliente(Long id, String nombre, String apellido, int dni, int edad) {
+	public Cliente( String nombre, String apellido, int dni, int edad) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;

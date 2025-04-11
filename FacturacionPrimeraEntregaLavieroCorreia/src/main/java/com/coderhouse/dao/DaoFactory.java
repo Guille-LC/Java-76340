@@ -24,4 +24,6 @@ public class DaoFactory {
 	public void persistirConcesionaria(Concesionaria coche) {
 		em.persist(coche);
 	};
+	
+	
 }
