@@ -1,20 +1,22 @@
 package com.coderhouse.entities;
 
 public class Mascota {
+	//Atributos
 	private String nombre;
 	private String color;
 	private String raza;
 	private String tamanio;
 	private int edad;
 	
+	//Metodos
 	public void caminar() {
 		System.out.println(getNombre() + " esta caminando.");	
 	}
-	
 	public void comer() {
 		System.out.println(getNombre() + " de color " + getColor() + " esta comiendo.");
 	}
 
+	//Getters y Setters
 	public String getNombre() {
 		return nombre;
 	}
@@ -53,6 +55,11 @@ public class Mascota {
 
 	public void setEdad(int edad) {
 		this.edad = edad;
+	}
+	@Override
+	public String toString() {
+		return "Mascota [nombre=" + nombre + ", color=" + color + ", raza=" + raza + ", tamanio=" + tamanio + ", edad="
+				+ edad + "]";
 	}
 	
 }
