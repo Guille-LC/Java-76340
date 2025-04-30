@@ -12,11 +12,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 
 @Entity
 @Table (name = "Clientes")
@@ -36,24 +36,13 @@ public class Cliente {
 	
 	@ManyToMany(mappedBy = "clientes", fetch = FetchType.EAGER)
 	private List<Concesionaria> coches = new ArrayList<>();
-	
-	public Cliente() {
-		super();
-	}
 
-	public Cliente( String nombre, String apellido, int dni, int edad) {
+	public Cliente(String nombre, String apellido, int dni, int edad) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
 		this.edad = edad;
 	}
-
-	@Override
-	public String toString() {
-		return "Cliente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", edad=" + edad
-				+ "]";
-	}
-	
 	
 }

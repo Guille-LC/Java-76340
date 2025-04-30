@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.coderhouse.dao.DaoFactory;
 import com.coderhouse.models.Cliente;
 import com.coderhouse.models.Concesionaria;
+import com.coderhouse.models.Gama;
 
 @SpringBootApplication
 public class FacturacionPrimeraEntregaLavieroCorreiaApplication implements CommandLineRunner {
@@ -23,6 +24,10 @@ public class FacturacionPrimeraEntregaLavieroCorreiaApplication implements Comma
 	public void run(String... args) throws Exception {
 		 try {
 			 
+			 Gama baja = new Gama("Gama baja");
+			 Gama media = new Gama("Gama media");
+			 Gama alta = new Gama("Gama alta");
+			 
 			 Concesionaria coche1 = new Concesionaria("Ferrari",1990);
 			 Concesionaria coche2 = new Concesionaria("BMW",1992);
 			 Concesionaria coche3 = new Concesionaria("Aston Martin",2000);
@@ -35,6 +40,10 @@ public class FacturacionPrimeraEntregaLavieroCorreiaApplication implements Comma
 			 Cliente cliente4 = new Cliente("Robert","Plant",63456123,76);
 			 Cliente cliente5 = new Cliente("Roger","Waters",83456123,81);
 			 
+			 dao.persistirGama(baja);
+			 dao.persistirGama(media);
+			 dao.persistirGama(alta);
+			 
 			 dao.persistirConcesionaria(coche1);
 			 dao.persistirConcesionaria(coche2);
 			 dao.persistirConcesionaria(coche3);
@@ -46,6 +55,13 @@ public class FacturacionPrimeraEntregaLavieroCorreiaApplication implements Comma
 			 dao.persistirCliente(cliente3);
 			 dao.persistirCliente(cliente4);
 			 dao.persistirCliente(cliente5);
+			 
+			 dao.asignarGamaACoche(coche1.getId(), alta.getId());
+			 dao.asignarGamaACoche(coche2.getId(), baja.getId());
+			 dao.asignarGamaACoche(coche3.getId(), media.getId());
+			 dao.asignarGamaACoche(coche4.getId(), alta.getId());
+			 dao.asignarGamaACoche(coche5.getId(), media.getId());
+			 
 			 
 		 }	catch(Exception err) {
 			 err.printStackTrace(System.err);

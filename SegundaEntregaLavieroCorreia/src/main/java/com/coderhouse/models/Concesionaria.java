@@ -11,20 +11,22 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.JoinColumn;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 
 @Entity
 @Table (name = "Coches")
 public class Concesionaria {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	@Column(name = "Marca", nullable = false)
 	private String marca;
 	@Column(name = "Modelo", nullable = false)
@@ -38,10 +40,9 @@ public class Concesionaria {
 		)
 	
 	private List<Cliente> clientes = new ArrayList<>();
-	
-	public Concesionaria() {
-		super();
-	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Gama gama;
 	
 	public Concesionaria(String marca, int modelo) {
 		super();
@@ -49,9 +50,5 @@ public class Concesionaria {
 		this.modelo = modelo;
 	}
 	
-	@Override
-	public String toString() {
-		return "Concesionaria [marca=" + marca + ", modelo=" + modelo + "]";
-	}
 	
 }
