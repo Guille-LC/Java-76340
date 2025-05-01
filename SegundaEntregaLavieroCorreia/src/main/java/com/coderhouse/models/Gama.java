@@ -3,6 +3,8 @@ package com.coderhouse.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,6 +33,7 @@ public class Gama {
 	private String nombre;
 
 	@OneToMany(mappedBy = "coches" ,fetch = FetchType.EAGER)
+	@JsonIgnore
 	private List <Concesionaria> coche = new ArrayList<>();	
 	
 	public Gama(String nombre) {

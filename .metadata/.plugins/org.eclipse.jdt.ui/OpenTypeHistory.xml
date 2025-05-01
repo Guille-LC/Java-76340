@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
     <typeInfo handle="=clase-05/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.coderhouse.entities{Mascota.java[Mascota" modifiers="1" timestamp="1744912890409"/>
+    <typeInfo handle="=SegundaEntregaLavieroCorreia/C:\/Users\/Guille\/.m2\/repository\/org\/springframework\/data\/spring-data-jpa\/3.4.4\/spring-data-jpa-3.4.4.jar=/maven.pomderived=/true=/=/maven.groupId=/org.springframework.data=/=/maven.artifactId=/spring-data-jpa=/=/maven.version=/3.4.4=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.springframework.data.jpa.repository(JpaRepository.class[JpaRepository" modifiers="1537" timestamp="1744149066633"/>
 </typeInfoHistroy>
