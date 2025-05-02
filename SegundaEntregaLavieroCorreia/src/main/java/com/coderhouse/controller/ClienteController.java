@@ -40,7 +40,7 @@ public class ClienteController {
 		}
 	}
 	
-	@PostMapping
+	@PostMapping("/create")
 	public Cliente createCliente(@RequestBody Cliente cliente) {
 		return clienteRepository.save(cliente);
 	};

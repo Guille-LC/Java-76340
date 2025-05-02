@@ -32,9 +32,9 @@ public class Gama {
 	@Column(name = "Tipo de gama", nullable = false)
 	private String nombre;
 
-	@OneToMany(mappedBy = "coches" ,fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "gama" ,fetch = FetchType.EAGER)
 	@JsonIgnore
-	private List <Concesionaria> coche = new ArrayList<>();	
+	private List <Concesionaria> coches = new ArrayList<>();	
 	
 	public Gama(String nombre) {
 		super();
