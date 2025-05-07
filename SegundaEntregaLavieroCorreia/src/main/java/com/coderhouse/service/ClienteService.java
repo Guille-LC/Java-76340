@@ -11,7 +11,7 @@ import com.coderhouse.repository.ClienteRepository;
 
 import jakarta.transaction.Transactional;
 
-@Service
+@Service // Realiza toda la logica del negocio
 public class ClienteService implements CrudInterface<Cliente, Long> {
 
 	@Autowired

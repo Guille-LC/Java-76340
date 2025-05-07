@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.coderhouse.models.Cliente;
 import com.coderhouse.service.ClienteService;
 
-@RestController
-@RequestMapping("api/clientes")
+@RestController // Se encarga de enviar y recibir las respuestas HTTP del cliente. Llama a los metodos del Service para devolver las respuestas.
+@RequestMapping("/api/clientes")
 public class ClienteController {
 
 	@Autowired
@@ -49,7 +49,7 @@ public class ClienteController {
 			Cliente clienteNuevo = clienteService.save(cliente);
 			return ResponseEntity.status(HttpStatus.CREATED).body(clienteNuevo); //201
 		} catch(Exception error) {
-			return ResponseEntity.internalServerError().build();			
+			return ResponseEntity.internalServerError().build(); //500
 		}
 	}
 	
@@ -57,7 +57,7 @@ public class ClienteController {
 	public ResponseEntity<Cliente> updateClienteById(@PathVariable Long clienteId, @RequestBody Cliente clienteActualizado) {
 		try {
 			Cliente cliente = clienteService.update(clienteId, clienteActualizado);
-			return ResponseEntity.ok(cliente);
+			return ResponseEntity.ok(cliente); //200
 		} catch(IllegalArgumentException error) {
 			return ResponseEntity.notFound().build(); //404	
 		} catch(Exception error) {
