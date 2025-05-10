@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.coderhouse</groupId>
-	<artifactId>FacturacionPrimeraEntregaLavieroCorreia</artifactId>
+	<artifactId>EntregaFinalLavieroCorreia</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>FacturacionPrimeraEntregaLavieroCorreia</name>
-	<description>primer pre-entrega (Guillermo Laviero Correia)</description>
+	<name>EntregaFinalLavieroCorreia</name>
+	<description>Entrega final (Guillermo Laviero Correia)</description>
 	<url/>
 	<licenses>
 		<license/>

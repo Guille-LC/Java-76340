@@ -53,10 +53,10 @@ public class ConcesionariaController {
 	} 
 	
 	@PutMapping("/{cocheId}")
-	public ResponseEntity<Concesionaria> createCoche(@PathVariable Long cocheId, @RequestBody Concesionaria cocheActualizado) {
+	public ResponseEntity<Concesionaria> updateCocheById(@PathVariable Long cocheId, @RequestBody Concesionaria cocheActualizado) {
 		try {
 			Concesionaria coche = concesionariaService.update(cocheId, cocheActualizado);
-			return ResponseEntity.ok(coche);
+			return ResponseEntity.ok(coche); //200
 		} catch(IllegalArgumentException error) {
 			return ResponseEntity.notFound().build(); //404	
 		} catch(Exception error) {
