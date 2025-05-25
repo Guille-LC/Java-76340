@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -25,10 +26,12 @@ import lombok.NoArgsConstructor;
 @Table(name = "Tipo de gama")
 public class Gama {
 	
+	@Schema(description = "ID de la gama", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Schema(description = "Tipo de gama", requiredMode = Schema.RequiredMode.REQUIRED, example = "Media")
 	@Column(name = "Tipo de gama", nullable = false)
 	private String nombre;
 

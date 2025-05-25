@@ -21,11 +21,11 @@ public class OpenApiConfig {
 				.info(new Info()
 						.title("API REST Full | Java | CoderHouse")
 						.version("1.0.0")
-						.description("La API REST proporciona endpoints para administrar alumnos y "
-                        		+ "cursos en una plataforma educativa. Permite realizar operaciones "
-                        		+ "CRUD (Crear, Leer, Actualizar, Eliminar) tanto para alumnos como "
-                        		+ "para cursos. Los endpoints permiten listar, agregar, mostrar, "
-                        		+ "editar y eliminar alumnos y cursos. La API está documentada utilizando "
+						.description("La API REST proporciona endpoints para administrar clientes y "
+                        		+ "coches en una plataforma. Permite realizar operaciones "
+                        		+ "CRUD (Crear, Leer, Actualizar, Eliminar) tanto para clientes como "
+                        		+ "para coches y tipos de gamas. Los endpoints permiten listar, agregar, mostrar, "
+                        		+ "editar y eliminar clientes y coches. La API está documentada utilizando "
                         		+ "Swagger, lo que facilita la comprensión de los endpoints y su uso.")
 						.contact(new Contact()
 								.name("Guillermo Laviero Correia")
@@ -37,7 +37,7 @@ public class OpenApiConfig {
 						)
 						.servers(List.of(
 								new Server()
-									.url("http://localhost:8080")
+									.url("http://localhost:8080") //http://localhost:8080/swagger-ui/index.html#/
 									.description("Servidor Local"),
 								new Server()
 									.url("http://localhost:5000")

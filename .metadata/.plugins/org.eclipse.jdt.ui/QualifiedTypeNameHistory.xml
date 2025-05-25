@@ -5,4 +5,5 @@
     <fullyQualifiedTypeName name="jakarta.persistence.FetchType"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
     <fullyQualifiedTypeName name="com.coderhouse.service.GamaService"/>
+    <fullyQualifiedTypeName name="io.swagger.v3.oas.annotations.media.Schema.RequiredMode"/>
 </qualifiedTypeNameHistroy>

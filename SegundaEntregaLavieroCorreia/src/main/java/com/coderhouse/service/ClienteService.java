@@ -5,17 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.coderhouse.dto.AsignarClienteACocheDTO;
 import com.coderhouse.interfaces.CrudInterface;
 import com.coderhouse.models.Cliente;
+import com.coderhouse.models.Concesionaria;
 import com.coderhouse.repository.ClienteRepository;
+import com.coderhouse.repository.ConcesionariaRepository;
 
 import jakarta.transaction.Transactional;
 
-@Service // Realiza toda la logica del negocio
+@Service
 public class ClienteService implements CrudInterface<Cliente, Long> {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
+	@Autowired
+	private ConcesionariaRepository concesionariaRepository;
 	
 	@Override
 	public List<Cliente> findAll() {
@@ -66,5 +71,26 @@ public class ClienteService implements CrudInterface<Cliente, Long> {
 		}
 	}
 
-	
+	@Transactional
+	public Cliente asignarClienteACoche(AsignarClienteACocheDTO dto) {
+		
+		Cliente cliente = clienteRepository.findById(dto.getClienteId()).orElseThrow(() -> new IllegalArgumentException("El cliente no existe"));
+		
+		for(Long cocheId : dto.getCocheIds()) {
+			Concesionaria coche = concesionariaRepository.findById(cocheId).orElseThrow(() -> new IllegalArgumentException("El coche no existe"));
+			
+			if (cliente.getCoches().contains(coche)) {
+				throw new IllegalStateException("El cliente ya tiene ese coche");
+			}
+			
+			cliente.getCoches().add(coche);
+			coche.getClientes().add(cliente);
+			
+			concesionariaRepository.save(coche);
+	    }
+		
+		
+		
+		return clienteRepository.save(cliente);
+	};
 }

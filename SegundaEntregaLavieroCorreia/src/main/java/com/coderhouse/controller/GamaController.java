@@ -24,13 +24,16 @@ public class GamaController {
 	@Autowired
 	private GamaService gamaService;
 	
-	@GetMapping
+	@GetMapping(path = {"/",""})
 	public List<Gama> getAllGamas() {
 		return gamaService.findAll();
 	}
 	
 	@GetMapping("/{gamaId}")
-	public ResponseEntity<Gama> getGamaById(@PathVariable Long gamaId) {
+	public ResponseEntity<?> getGamaById(@PathVariable Long gamaId) {
+		if (gamaId == null) {
+			return ResponseEntity.badRequest().body("¡El Id de la gama no debe ser nulo!");
+		}
 		try {
 			Gama gama = gamaService.findById(gamaId);
 			return ResponseEntity.ok(gama); //200
@@ -52,7 +55,10 @@ public class GamaController {
 	} 
 	
 	@PutMapping("/{gamaId}")
-	public ResponseEntity<Gama> updateGamaById(@PathVariable Long gamaId, @RequestBody Gama gamaActualizada) {
+	public ResponseEntity<?> updateGamaById(@PathVariable Long gamaId, @RequestBody Gama gamaActualizada) {
+		if (gamaId == null) {
+			return ResponseEntity.badRequest().body("¡El Id de la gama no debe ser nulo!");
+		}
 		try {
 			Gama gama = gamaService.update(gamaId, gamaActualizada);
 			return ResponseEntity.ok(gama); //200
@@ -64,7 +70,10 @@ public class GamaController {
 	};
 	
 	@DeleteMapping("/{gamaId}")
-	public ResponseEntity<Void> deleteGama(@PathVariable Long gamaId) {
+	public ResponseEntity<?> deleteGama(@PathVariable Long gamaId) {
+		if (gamaId == null) {
+			return ResponseEntity.badRequest().body("¡El Id de la gama no debe ser nulo!");
+		}
 		try {
 			gamaService.delete(gamaId);
 			return ResponseEntity.noContent().build(); //204

@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.coderhouse.interfaces.CrudInterface;
 import com.coderhouse.models.Concesionaria;
+import com.coderhouse.models.Gama;
 import com.coderhouse.repository.ConcesionariaRepository;
+import com.coderhouse.repository.GamaRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -16,6 +18,8 @@ public class ConcesionariaService implements CrudInterface<Concesionaria, Long> 
 
 	@Autowired
 	private ConcesionariaRepository concesionariaRepository;
+	@Autowired
+	private GamaRepository gamaRepository;
 	
 	@Override
 	public List<Concesionaria> findAll() {
@@ -57,5 +61,19 @@ public class ConcesionariaService implements CrudInterface<Concesionaria, Long> 
 			concesionariaRepository.deleteById(id);			
 		}
 	}
+
+	@Transactional
+	public Concesionaria asignarGamaACoche(Long cocheId, Long gamaId) {
+		Gama gama = gamaRepository.findById(gamaId).orElseThrow(() -> new IllegalArgumentException("La gama no existe"));
+		Concesionaria coche = concesionariaRepository.findById(cocheId).orElseThrow(() -> new IllegalArgumentException("El coche no existe"));
+		
+		if (coche.getGama() != null && coche.getGama().getId().equals(gamaId)) {
+			throw new IllegalStateException("El coche ya tiene esta gama asignada");
+		}
+		
+		coche.setGama(gama);
+		
+		return concesionariaRepository.save(coche);
+	};
 
 }

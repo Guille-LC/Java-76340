@@ -14,23 +14,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.coderhouse.dto.AsignarClienteACocheDTO;
 import com.coderhouse.models.Cliente;
 import com.coderhouse.service.ClienteService;
 
-@RestController // Se encarga de enviar y recibir las respuestas HTTP del cliente. Llama a los metodos del Service para devolver las respuestas.
+@RestController
 @RequestMapping("/api/clientes")
 public class ClienteController {
 
 	@Autowired
 	private ClienteService clienteService;
 	
-	@GetMapping
+	@GetMapping(path = {"/",""})
 	public List<Cliente> getAllClientes() {
 		return clienteService.findAll();
 	};
 	
 	@GetMapping("/{clienteId}")
-	public ResponseEntity<Cliente> getClienteById(@PathVariable Long clienteId){
+	public ResponseEntity<?> getClienteById(@PathVariable Long clienteId){
+		if (clienteId == null) {
+			return ResponseEntity.badRequest().body("¡El Id del cliente no debe ser nulo!");
+		}
 		try {
 			Cliente cliente = clienteService.findById(clienteId);
 				return ResponseEntity.ok(cliente); //200
@@ -53,8 +57,28 @@ public class ClienteController {
 		}
 	}
 	
+	@PostMapping("/asignarClienteACoche")
+	public ResponseEntity<?> asignarClienteACoche(@RequestBody AsignarClienteACocheDTO dto) {
+		if (dto.getClienteId() == null || dto.getCocheIds() == null) {
+			return ResponseEntity.badRequest().body("¡El Id del cliente o del coche no debe ser nulo!");
+		}
+		try {
+			Cliente cliente = clienteService.asignarClienteACoche(dto);
+			return ResponseEntity.ok(cliente); //200
+		} catch (IllegalStateException error) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(error.getMessage()); //409
+		} catch(IllegalArgumentException error) {
+			return ResponseEntity.notFound().build(); //404	
+		} catch(Exception error) {
+			return ResponseEntity.internalServerError().build(); //500		
+		}
+	};
+	
 	@PutMapping("/{clienteId}")
-	public ResponseEntity<Cliente> updateClienteById(@PathVariable Long clienteId, @RequestBody Cliente clienteActualizado) {
+	public ResponseEntity<?> updateClienteById(@PathVariable Long clienteId, @RequestBody Cliente clienteActualizado) {
+		if (clienteId == null) {
+			return ResponseEntity.badRequest().body("¡El Id del cliente no debe ser nulo!");
+		}
 		try {
 			Cliente cliente = clienteService.update(clienteId, clienteActualizado);
 			return ResponseEntity.ok(cliente); //200
@@ -66,7 +90,10 @@ public class ClienteController {
     }
 	
 	@DeleteMapping("/{clienteId}")
-	public ResponseEntity<Void> deleteClienteById(@PathVariable Long clienteId) {
+	public ResponseEntity<?> deleteClienteById(@PathVariable Long clienteId) {
+		if (clienteId == null) {
+			return ResponseEntity.badRequest().body("¡El Id del cliente no debe ser nulo!");
+		}
 		try {
 			clienteService.delete(clienteId);
 			return ResponseEntity.noContent().build(); //204
