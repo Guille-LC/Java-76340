@@ -17,18 +17,41 @@ import org.springframework.web.bind.annotation.RestController;
 import com.coderhouse.models.Gama;
 import com.coderhouse.service.GamaService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/gama")
+@Tag(name = "Controlador de las gamas", description = "Endpoints para gestionar a los distintos tipos de gamas")
 public class GamaController {
 
 	@Autowired
 	private GamaService gamaService;
 	
+	@Operation(summary = "Obtener la lista de todas las gamas")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Lista de gamas", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Gama.class))
+			}),
+			@ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
+	})
 	@GetMapping(path = {"/",""})
 	public List<Gama> getAllGamas() {
 		return gamaService.findAll();
 	}
 	
+	@Operation(summary = "Obtener gama por ID")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Gama obtenida", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Gama.class))
+			}),
+			@ApiResponse(responseCode = "404", description = "No encontrado", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
+	})
 	@GetMapping("/{gamaId}")
 	public ResponseEntity<?> getGamaById(@PathVariable Long gamaId) {
 		if (gamaId == null) {
@@ -44,6 +67,13 @@ public class GamaController {
 		}
 	};
 	
+	@Operation(summary = "Crear gama por ID")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "201", description = "Gama creado", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Gama.class))
+			}),
+			@ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
+	})
 	@PostMapping("/create")
 	public ResponseEntity<Gama> createGama(@RequestBody Gama gama) {
 		try {
@@ -54,6 +84,14 @@ public class GamaController {
 		}
 	} 
 	
+	@Operation(summary = "Actualizar gama por ID")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Gama actualizado", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Gama.class))
+			}),
+			@ApiResponse(responseCode = "404", description = "No encontrado", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
+	})
 	@PutMapping("/{gamaId}")
 	public ResponseEntity<?> updateGamaById(@PathVariable Long gamaId, @RequestBody Gama gamaActualizada) {
 		if (gamaId == null) {
@@ -69,6 +107,12 @@ public class GamaController {
 		}
 	};
 	
+	@Operation(summary = "Borrar gama por ID")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "204", description = "Gama borrada", content = {@Content()}),
+			@ApiResponse(responseCode = "404", description = "No encontrado", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
+	})
 	@DeleteMapping("/{gamaId}")
 	public ResponseEntity<?> deleteGama(@PathVariable Long gamaId) {
 		if (gamaId == null) {

@@ -22,8 +22,8 @@ import jakarta.persistence.JoinColumn;
 
 @Data
 @NoArgsConstructor
-
 @Entity
+@Schema(description = "Modelo de coche")
 @Table (name = "Coches")
 public class Concesionaria {
 	

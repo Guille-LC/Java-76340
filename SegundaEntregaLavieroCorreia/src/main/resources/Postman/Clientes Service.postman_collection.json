@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "ef3b0c95-e0b1-418a-addf-96ec8baabcd0",
+		"name": "Clientes Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44410270",
+		"_collection_link": "https://cloudy-water-8823994.postman.co/workspace/Guillermoi-L.C.'s-Workspace~663160ab-1480-41f3-8e66-a13becea06ec/collection/44410270-ef3b0c95-e0b1-418a-addf-96ec8baabcd0?action=share&source=collection_link&creator=44410270"
+	},
+	"item": [
+		{
+			"name": "Lista de clientes",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clientes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clientes/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear cliente",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Noodles\",\r\n    \"apellido\": \"\",\r\n    \"dni\": 655556143,\r\n    \"edad\": 61,\r\n    \"coches\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/clientes/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asignar cliente a coche",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"clienteId\": \"5\",\r\n  \"cocheIds\": [1,2,3]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/asignarClienteACoche",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"asignarClienteACoche"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar cliente por ID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"James\",\r\n    \"apellido\": \"Hetfield\",\r\n    \"dni\": 66000143,\r\n    \"edad\": 70,\r\n    \"coches\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/clientes/15",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar cliente por ID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clientes/13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						"13"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

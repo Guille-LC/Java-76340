@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
+@Schema(description = "Modelo de gama")
 @Table(name = "Tipo de gama")
 public class Gama {
 	

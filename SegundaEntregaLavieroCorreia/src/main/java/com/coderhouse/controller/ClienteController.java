@@ -18,18 +18,41 @@ import com.coderhouse.dto.AsignarClienteACocheDTO;
 import com.coderhouse.models.Cliente;
 import com.coderhouse.service.ClienteService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @RestController
 @RequestMapping("/api/clientes")
+@Tag(name = "Controlador de clientes", description = "Endpoints para gestionar a los clientes")
 public class ClienteController {
 
 	@Autowired
 	private ClienteService clienteService;
 	
+	@Operation(summary = "Obtener la lista de todos los clientes")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Lista de clientes", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Cliente.class))
+			}),
+			@ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
+	})
 	@GetMapping(path = {"/",""})
 	public List<Cliente> getAllClientes() {
 		return clienteService.findAll();
 	};
 	
+	@Operation(summary = "Obtener el cliente por ID")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Cliente obtenido", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Cliente.class))
+			}),
+			@ApiResponse(responseCode = "404", description = "No encontrado", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
+	})
 	@GetMapping("/{clienteId}")
 	public ResponseEntity<?> getClienteById(@PathVariable Long clienteId){
 		if (clienteId == null) {
@@ -47,6 +70,13 @@ public class ClienteController {
 		}
 	}
 	
+	@Operation(summary = "Crear cliente por ID")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "201", description = "Cliente creado", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Cliente.class))
+			}),
+			@ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
+	})
 	@PostMapping("/create")
 	public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente) {
 		try {
@@ -57,6 +87,15 @@ public class ClienteController {
 		}
 	}
 	
+	@Operation(summary = "Asigancion de cliente a coche")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Cliente actualizado", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Cliente.class))
+			}),
+			@ApiResponse(responseCode = "409", description = "Error al intentar asignar"),
+			@ApiResponse(responseCode = "404", description = "No encontrado", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
+	})
 	@PostMapping("/asignarClienteACoche")
 	public ResponseEntity<?> asignarClienteACoche(@RequestBody AsignarClienteACocheDTO dto) {
 		if (dto.getClienteId() == null || dto.getCocheIds() == null) {
@@ -74,6 +113,14 @@ public class ClienteController {
 		}
 	};
 	
+	@Operation(summary = "Actualizar cliente por ID")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Cliente actualizado", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Cliente.class))
+			}),
+			@ApiResponse(responseCode = "404", description = "No encontrado", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
+	})
 	@PutMapping("/{clienteId}")
 	public ResponseEntity<?> updateClienteById(@PathVariable Long clienteId, @RequestBody Cliente clienteActualizado) {
 		if (clienteId == null) {
@@ -89,6 +136,12 @@ public class ClienteController {
 		}
     }
 	
+	@Operation(summary = "Borrar cliente por ID")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "204", description = "Cliente borrado", content = {@Content()}),
+			@ApiResponse(responseCode = "404", description = "No encontrado", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
+	})
 	@DeleteMapping("/{clienteId}")
 	public ResponseEntity<?> deleteClienteById(@PathVariable Long clienteId) {
 		if (clienteId == null) {

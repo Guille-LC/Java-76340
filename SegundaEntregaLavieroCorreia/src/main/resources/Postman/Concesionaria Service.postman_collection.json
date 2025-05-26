@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "a0d048da-5aa2-460b-9f57-5614982da156",
+		"name": "Concesionaria Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44410270",
+		"_collection_link": "https://cloudy-water-8823994.postman.co/workspace/Guillermoi-L.C.'s-Workspace~663160ab-1480-41f3-8e66-a13becea06ec/collection/44410270-a0d048da-5aa2-460b-9f57-5614982da156?action=share&source=collection_link&creator=44410270"
+	},
+	"item": [
+		{
+			"name": "Lista de Coches",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/coches/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"coches",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Coche por ID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/coches/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"coches",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear coche",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"marca\": \"Aston Martin\",\r\n    \"modelo\": 1982,\r\n    \"gama\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"Gama baja\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/coches/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"coches",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asignar gama a coche",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cocheId\":\"15\",\r\n    \"gamaId\":\"3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/coches/asignarGama",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"coches",
+						"asignarGama"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar coche por ID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 1,\r\n        \"marca\": \"Ferrari\",\r\n        \"modelo\": 1992,\r\n        \"gama\": {\r\n            \"id\": 3,\r\n            \"nombre\": \"Gama alta\"\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/coches/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"coches",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar coche por ID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/coches/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"coches",
+						"8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
